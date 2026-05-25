@@ -4,63 +4,63 @@
 // step 4: insert document
 // step 5: use <collection>.save()
 
-
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 // step1: connecting with db
-mongoose.connect("mongodb://localhost:27017/fruitsDB")
-
+mongoose.connect("mongodb://localhost:27017/fruitsDB");
 
 // step2: creating schema
 const fruitSchema = new mongoose.Schema({
-    name: String,
-    rating: Number,
-    review: String
-})
+  name: String,
+  rating: {
+    type: Number,
+    min: 1,
+    max: 10,
+  },
+  review: String,
+});
 
 // step3: creating model/collection
-const Fruit = mongoose.model("Fruit", fruitSchema)
+const Fruit = mongoose.model("Fruit", fruitSchema);
 
 // step4: insert document
 const fruit = new Fruit({
-    name: "Apple",
-    rating: 7,
-    review: "Preety solid as a fruit"
-})
+  name: "Apple",
+  rating: 10,
+  review: "Apple are so yummy",
+});
 
-// fruit.save()  //everytime nodemon runs then this line insert document again and again, so i just comment out this line.
-
-
+// fruit.save(); //everytime nodemon runs then this line insert document again and again, so i just comment out this line.
 
 const personSchema = new mongoose.Schema({
-    name: String,
-    age: Number
-})
+  name: String,
+  age: Number,
+});
 
-const Person = mongoose.model("Person", personSchema)
+const Person = mongoose.model("Person", personSchema);
 
 const person = new Person({
-    name: "John",
-    age: 37
-})
+  name: "John",
+  age: 37,
+});
 
-// person.save() 
+// person.save()
 
 const kiwi = new Fruit({
-    name: "Kiwi",
-    rating: 10,
-    review: "Sooo sourrrr!!"
-})
+  name: "Kiwi",
+  rating: 10,
+  review: "Sooo sourrrr!!",
+});
 const orange = new Fruit({
-    name: "Orange",
-    rating: 10,
-    review: "Best!!"
-})
+  name: "Orange",
+  rating: 10,
+  review: "Best!!",
+});
 const mango = new Fruit({
-    name: "Mango",
-    rating: 10,
-    review: "Best fruit ever!"
-})
+  name: "Mango",
+  rating: 10,
+  review: "Best fruit ever!",
+});
 
 // Fruit.insertMany([kiwi, orange, mango])
 // .then(()=>{
@@ -70,17 +70,15 @@ const mango = new Fruit({
 //     console.log(err);
 // })
 
-
 Fruit.find()
-    .then((fruits)=>{
-        fruits.forEach(fruit=>{
-            console.log(fruit.name);
-        })
-        mongoose.connection.close()
-        
-    })
-    .catch((err)=>{
-        console.log(err);
-        
-})
-
+  .then((fruits) => {
+    fruits.forEach((fruit) => {
+      console.log(fruit.name);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+  .finally(() => {
+    mongoose.connection.close();
+  });
