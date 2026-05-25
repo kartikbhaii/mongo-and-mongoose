@@ -62,11 +62,25 @@ const mango = new Fruit({
     review: "Best fruit ever!"
 })
 
-Fruit.insertMany([kiwi, orange, mango])
-.then(()=>{
-    console.log("Successfully saved all fruits");
-})
-.catch((err)=>{
-    console.log(err);
+// Fruit.insertMany([kiwi, orange, mango])
+// .then(()=>{
+//     console.log("Successfully saved all fruits");
+// })
+// .catch((err)=>{
+//     console.log(err);
+// })
+
+
+Fruit.find()
+    .then((fruits)=>{
+        fruits.forEach(fruit=>{
+            console.log(fruit.name);
+        })
+        mongoose.connection.close()
+        
+    })
+    .catch((err)=>{
+        console.log(err);
+        
 })
 
