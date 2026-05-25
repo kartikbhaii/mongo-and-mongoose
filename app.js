@@ -28,4 +28,45 @@ const fruit = new Fruit({
     review: "Preety solid as a fruit"
 })
 
-// fruit.save()
+// fruit.save()  //everytime nodemon runs then this line insert document again and again, so i just comment out this line.
+
+
+
+const personSchema = new mongoose.Schema({
+    name: String,
+    age: Number
+})
+
+const Person = mongoose.model("Person", personSchema)
+
+const person = new Person({
+    name: "John",
+    age: 37
+})
+
+// person.save() 
+
+const kiwi = new Fruit({
+    name: "Kiwi",
+    rating: 10,
+    review: "Sooo sourrrr!!"
+})
+const orange = new Fruit({
+    name: "Orange",
+    rating: 10,
+    review: "Best!!"
+})
+const mango = new Fruit({
+    name: "Mango",
+    rating: 10,
+    review: "Best fruit ever!"
+})
+
+Fruit.insertMany([kiwi, orange, mango])
+.then(()=>{
+    console.log("Successfully saved all fruits");
+})
+.catch((err)=>{
+    console.log(err);
+})
+
