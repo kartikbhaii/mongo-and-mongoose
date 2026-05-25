@@ -1,0 +1,24 @@
+{
+  "name": "mongo-and-mongoose",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/kartikbhaii/mongo-and-mongoose#readme",
+  "bugs": {
+    "url": "https://github.com/kartikbhaii/mongo-and-mongoose/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kartikbhaii/mongo-and-mongoose.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.6.2"
+  }
+}
