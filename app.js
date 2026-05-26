@@ -23,26 +23,33 @@ const fruitSchema = new mongoose.Schema({
 // step3: creating model/collection
 const Fruit = mongoose.model("Fruit", fruitSchema);
 
-// step4: insert document
-const fruit = new Fruit({
-  name: "Apple",
-  rating: 10,
-  review: "Apple are so yummy",
-});
+
 
 // fruit.save(); //everytime nodemon runs then this line insert document again and again, so i just comment out this line.
 
 const personSchema = new mongoose.Schema({
   name: String,
   age: Number,
+  favouriteFruit: fruitSchema
 });
+
+const melon = new Fruit({
+    name: "Melon",
+    rating: 10,
+    review: "so watery..."
+})
+
+// melon.save()
+
+
 
 const Person = mongoose.model("Person", personSchema);
 
-const person = new Person({
-  name: "John",
-  age: 37,
-});
+// const person = new Person({
+//   name: "Amy",
+//   age: 22,
+//   favouriteFruit: pineapple
+// });
 
 // person.save()
 
@@ -83,14 +90,48 @@ Fruit.find()
 //     mongoose.connection.close();
 // })
 
-Fruit.updateOne(
-    { _id: "6a146df2615901e0d671a3e5" },
-    {$set: { name: "Grapes" }}
-)
-  .then(() => {
-    console.log("Successfully updated the document");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// Fruit.updateOne(
+//     { _id: "6a146df2615901e0d671a3e5" },
+//     {$set: { name: "Grapes" }}
+// )
+//   .then(() => {
+//     console.log("Successfully updated the document");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
+
+
+// Fruit.deleteOne({ name: 'Pineapple' })
+//     .then(()=>{
+//         console.log("Successfully deleted")
+//     })
+//     .catch((err)=>{
+//         console.log(err);
+        
+//     })
+
+
+
+// Person.deleteMany({name: "John"})
+// .then(()=>{
+//     console.log("Deleted");
+    
+// })
+// .catch((err)=>{
+//     console.log(err);
+    
+// })
+
+
+
+
+ Person.updateOne({name: "John"}, {favouriteFruit: melon})
+ .then(()=>{
+
+ })
+ .catch((err)=>{
+    console.log(err);
+    
+ })
