@@ -78,7 +78,19 @@ Fruit.find()
   })
   .catch((err) => {
     console.log(err);
-  })
-  .finally(() => {
-    mongoose.connection.close();
   });
+//   .finally(() => {
+//     mongoose.connection.close();
+// })
+
+Fruit.updateOne(
+    { _id: "6a146df2615901e0d671a3e5" },
+    {$set: { name: "Grapes" }}
+)
+  .then(() => {
+    console.log("Successfully updated the document");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
